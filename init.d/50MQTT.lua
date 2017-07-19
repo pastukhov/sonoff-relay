@@ -47,12 +47,12 @@ client:on('offline',
 
 client:on('message', function(conn, topic, data)
     local msg = sjson.decode(data)
-    disp:firstPage()
-    repeat
+--    disp:firstPage()
+--    repeat
         for _, item in pairs(msg) do
             dofile('MQTT.d/'.. item.type .. '.lua')(item)
         end 
-    until disp:nextPage() == false
+--    until disp:nextPage() == false
 end)
 
 getip:start()
