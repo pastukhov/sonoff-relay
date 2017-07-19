@@ -1,7 +1,7 @@
 config.topic = {
-                subscribe   =   'oled/' .. node.chipid() ..'/set',
-                publish     =   'oled/' .. node.chipid(),
-                status      =   'oled/' .. node.chipid() .. '/status'
+                subscribe   =   'relay/' .. node.chipid() ..'/set',
+                publish     =   'relay/' .. node.chipid(),
+                status      =   'relay/' .. node.chipid() .. '/status'
               }
 
 function connect ()
