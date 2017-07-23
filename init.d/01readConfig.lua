@@ -6,3 +6,6 @@ if file.exists("config.json") then
 else
     print("Upload config.json!")
 end
+
+gpio.mode(config.relay,gpio.OUTPUT)
+gpio.mode(config.led,gpio.OUTPUT)

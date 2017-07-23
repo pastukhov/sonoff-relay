@@ -9,7 +9,7 @@ function connect ()
         client:subscribe(config.topic.subscribe,0)
         print ('Connected') 
         client:publish(config.topic.status,sjson.encode({ online = true}),0,1)
-        splash:stop()
+--        splash:stop()
         reconnect:stop()
     end)
 end
@@ -47,12 +47,9 @@ client:on('offline',
 
 client:on('message', function(conn, topic, data)
     local msg = sjson.decode(data)
---    disp:firstPage()
---    repeat
         for _, item in pairs(msg) do
             dofile('MQTT.d/'.. item.type .. '.lua')(item)
         end 
---    until disp:nextPage() == false
 end)
 
 getip:start()
