@@ -15,16 +15,10 @@ end
 
 function onChange ()
     print('The pin value has changed to '..gpio.read(config.button))
-    if  gpio.read(config.button) == 1 then
-        gpio.write(config.relay,gpio.LOW)
-        gpio.write(config.led,gpio.LOW)
-        client:publish(config.topic.publish,'off',0,0)
-    else
-        gpio.write(config.relay,gpio.HIGH)
-        gpio.write(config.led,gpio.HIGH)
-        client:publish(config.topic.publish,'on',0,0)
+    if gpio.read(config.button) == 0 
+    then 
+	dofile('MQTT.d/relay.lua')({action = 'toggle'}) 
     end
-    
 end
 
 gpio.mode(config.button, gpio.INT, gpio.PULLUP) -- see https://github.com/hackhitchin/esp8266-co-uk/pull/1

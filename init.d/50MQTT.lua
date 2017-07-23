@@ -1,15 +1,9 @@
-config.topic = {
-                subscribe   =   'relay/' .. node.chipid() ..'/set',
-                publish     =   'relay/' .. node.chipid(),
-                status      =   'relay/' .. node.chipid() .. '/status'
-              }
-
 function connect ()
     client:connect(config.broker, config.port, config.tls, function(conn)
         client:subscribe(config.topic.subscribe,0)
         print ('Connected') 
         client:publish(config.topic.status,sjson.encode({ online = true}),0,1)
---        splash:stop()
+        sensor:start()
         reconnect:stop()
     end)
 end
